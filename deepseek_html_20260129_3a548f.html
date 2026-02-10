@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKCITY - Premium Snooker & Billiards Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3c6e;
+            --secondary: #c12b2b;
+            --accent: #e8b923;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #a02525;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: #0d2b57;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .logo .app {
+            background-color: var(--secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .active {
+            color: var(--accent);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: flex;
+            padding: 40px 0;
+            gap: 40px;
+        }
+        
+        .blog-posts {
+            flex: 3;
+        }
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent);
+            color: var(--primary);
+        }
+        
+        /* Post Card */
+        .post-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .post-img {
+            height: 220px;
+            background-color: var(--light-gray);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .post-content {
+            padding: 25px;
+        }
+        
+        .post-meta {
+            display: flex;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .post-meta span {
+            margin-right: 15px;
+        }
+        
+        .post-meta i {
+            margin-right: 5px;
+            color: var(--accent);
+        }
+        
+        .post-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .post-excerpt {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        /* Sidebar */
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .widget-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .recent-post {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .recent-post:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .recent-post-img {
+            width: 80px;
+            height: 60px;
+            background-color: var(--light-gray);
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+        
+        .recent-post-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+        
+        .recent-post-content span {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .categories-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            transition: color 0.3s;
+        }
+        
+        .categories-list a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .newsletter h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .newsletter-form button {
+            border-radius: 0 4px 4px 0;
+            border: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-links li:last-child {
+            border-bottom: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 4px;
+                width: 100%;
+            }
+        }
+        
+        /* Animation for page load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>JKC<span>ITY</span></h1>
+            </div>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Snooker</a></li>
+                    <li><a href="#">Billiards</a></li>
+                    <li><a href="#">Players</a></li>
+                    <li><a href="#">Tournaments</a></li>
+                    <li><a href="#">Equipment</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 class="fade-in">The Ultimate Snooker & Billiards Blog</h2>
+            <p class="fade-in">Expert analysis, player profiles, tournament coverage, and tips to improve your game. Everything for cue sports enthusiasts.</p>
+            <a href="#featured" class="btn btn-primary fade-in">Explore Articles</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Blog Posts -->
+        <div class="blog-posts">
+            <h3 class="section-title">Latest Articles</h3>
+            
+            <div class="post-card fade-in">
+                <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1593693399741-1c53e0b6f5a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> June 12, 2023</span>
+                        <span><i class="far fa-folder"></i> Tournaments</span>
+                        <span><i class="far fa-comments"></i> 24 Comments</span>
+                    </div>
+                    <h3 class="post-title">World Snooker Championship 2023: A Historic Final</h3>
+                    <p class="post-excerpt">Luca Brecel's remarkable comeback to win his first world title has been hailed as one of the greatest achievements in snooker history. We break down the key moments from an unforgettable tournament.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+            
+            <div class="post-card fade-in">
+                <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> June 5, 2023</span>
+                        <span><i class="far fa-folder"></i> Technique</span>
+                        <span><i class="far fa-comments"></i> 18 Comments</span>
+                    </div>
+                    <h3 class="post-title">Mastering Positional Play: The Key to Consistent Breaks</h3>
+                    <p class="post-excerpt">Improving your positional play is the single most important factor in building higher breaks. Learn the fundamentals of cue ball control and angle management from professional coaches.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+            
+            <div class="post-card fade-in">
+                <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1594381898411-8466b8d6a1c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> May 28, 2023</span>
+                        <span><i class="far fa-folder"></i> Players</span>
+                        <span><i class="far fa-comments"></i> 32 Comments</span>
+                    </div>
+                    <h3 class="post-title">Ronnie O'Sullivan: The GOAT's Legacy and Future Plans</h3>
+                    <p class="post-excerpt">As Ronnie O'Sullivan continues to break records well into his 40s, we examine what makes him the greatest snooker player of all time and how long he might continue competing at the highest level.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+            
+            <div class="post-card fade-in">
+                <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1629203851125-e71ccb8d8607?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> May 15, 2023</span>
+                        <span><i class="far fa-folder"></i> Equipment</span>
+                        <span><i class="far fa-comments"></i> 15 Comments</span>
+                    </div>
+                    <h3 class="post-title">Choosing the Right Cue: A Comprehensive Buyer's Guide</h3>
+                    <p class="post-excerpt">From tip diameter to shaft flexibility, we explain all the factors to consider when buying a snooker or pool cue. Plus, our top recommendations for different skill levels and budgets.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-widget fade-in">
+                <h4 class="widget-title">About JKCITY</h4>
+                <p>JKCITY is your premier destination for all things snooker and billiards. Founded by passionate cue sports enthusiasts, we provide in-depth analysis, training tips, and coverage of major tournaments.</p>
+                <a href="#" class="btn" style="margin-top: 15px;">Learn More</a>
+            </div>
+            
+            <div class="sidebar-widget fade-in">
+                <h4 class="widget-title">Recent Posts</h4>
+                <div class="recent-post">
+                    <div class="recent-post-img" style="background-image: url('https://images.unsplash.com/photo-1593693399741-1c53e0b6f5a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80');"></div>
+                    <div class="recent-post-content">
+                        <h4>World Snooker Championship 2023 Review</h4>
+                        <span>June 12, 2023</span>
+                    </div>
+                </div>
+                <div class="recent-post">
+                    <div class="recent-post-img" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80');"></div>
+                    <div class="recent-post-content">
+                        <h4>Mastering Positional Play</h4>
+                        <span>June 5, 2023</span>
+                    </div>
+                </div>
+                <div class="recent-post">
+                    <div class="recent-post-img" style="background-image: url('https://images.unsplash.com/photo-1594381898411-8466b8d6a1c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80');"></div>
+                    <div class="recent-post-content">
+                        <h4>Ronnie O'Sullivan: The GOAT's Legacy</h4>
+                        <span>May 28, 2023</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-widget fade-in">
+                <h4 class="widget-title">Categories</h4>
+                <ul class="categories-list">
+                    <li><a href="#">Tournaments <span>(42)</span></a></li>
+                    <li><a href="#">Players <span>(28)</span></a></li>
+                    <li><a href="#">Technique <span>(35)</span></a></li>
+                    <li><a href="#">Equipment <span>(19)</span></a></li>
+                    <li><a href="#">Billiards <span>(23)</span></a></li>
+                    <li><a href="#">Snooker News <span>(57)</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-widget fade-in">
+                <h4 class="widget-title">Upcoming Events</h4>
+                <div class="event">
+                    <h4>International Championship</h4>
+                    <p><i class="far fa-calendar"></i> August 5-13, 2023</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Tianjin, China</p>
+                </div>
+                <div class="event" style="margin-top: 15px;">
+                    <h4>UK Championship</h4>
+                    <p><i class="far fa-calendar"></i> November 25 - Dec 3, 2023</p>
+                    <p><i class="fas fa-map-marker-alt"></i> York, England</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Get the latest snooker & billiards news, tournament updates, and exclusive tips delivered directly to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">JKC<span>ITY</span></div>
+                    <div class="footer-about">
+                        <p>Your premier destination for snooker and billiards content. Expert analysis, training guides, and comprehensive tournament coverage.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Tournament Calendar</a></li>
+                        <li><a href="#">Player Rankings</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Popular Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">World Championship</a></li>
+                        <li><a href="#">Training Tips</a></li>
+                        <li><a href="#">Cue Maintenance</a></li>
+                        <li><a href="#">Player Interviews</a></li>
+                        <li><a href="#">Tournament Previews</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@jkcity.app</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> London, UK</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 JKCITY.app. All rights reserved. | Designed for snooker and billiards enthusiasts</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('show');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            const mobileToggle = document.getElementById('mobileToggle');
+            
+            if (!navMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
+                navMenu.classList.remove('show');
+            }
+        });
+        
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`Thank you for subscribing with ${email}! You'll receive our next newsletter.`);
+            this.reset();
+        });
+        
+        // Add fade-in animation to elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all post cards and widgets
+        document.querySelectorAll('.post-card, .sidebar-widget').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
